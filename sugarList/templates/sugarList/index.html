@@ -1,0 +1,19 @@
+{% extends 'sugarList/base.html' %}
+{% load static %}
+
+
+<body>
+{% block porductList %}
+    <ul class="list-group list-group-flush">
+        {% for product in products %}
+        <li class="list-group-item">
+            <div class="d-flex">
+                <img class="mr-4" src="{{ product.productImage.url }}" width="70">
+                <p class="mr-4">{{ product.productName }}</p>
+                <p class="mr-4">Brand: {{ product.productBrand }}</p>
+                <p class="mr-4">Sugar: {{ product.productSugar }}g</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
