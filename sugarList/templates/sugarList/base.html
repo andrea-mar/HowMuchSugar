@@ -2,20 +2,52 @@
 {# Load the tag library #}
 {% load bootstrap4 %}
 
+
+
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'sugarList/styles.css' %}" rel="stylesheet">
     <title>How Much Sugar?</title>
 </head>
 <body>
-    {% block porductList %}
-    {% endblock %}
+    <!--Navigation search item-->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}"><b>How Much Sugar?</b></a>
+          <form class="d-flex mt-2">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    <!--Add Product Link Section-->
+    <div class="container mt-4">
+        <a href="{% url 'addproduct' %}">Add new Product</a>
+    </div>
+
+    <!--Content Section-->
+    <div class="container mt-4">
+        {% block porductList %}
+        {% endblock %}
+    </div>  
+
+    <!--Add New Product Form-->
+    <div class="container mt-4">
+        {% block productForm %}
+        {% endblock productForm %} 
+    </div> 
+
+    <footer>
+        Footer Area
+    </footer>    
     
 </body>
 </html>
