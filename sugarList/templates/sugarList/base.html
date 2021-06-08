@@ -28,6 +28,19 @@
           </form>
         </div>
       </nav>
+      <nav class="navbar">
+        <div class="ml-auto">
+        {% if user.is_authenticated %}
+          <a class="navbar-link text-end mr-2" href="#">Account</a>
+          <span>/</span>
+          <a class="navbar-link text-end mr-3 ml-2" href="#">Logout</a> 
+        {% else %}
+            <a class="navbar-link mr-2" href="#">Register</a>
+            <a class="navbar-link mr-3 ml-2" href="#">Login</a> 
+        {% endif %}
+        </div>
+      </nav>
+      
     <!--Add Product Link Section-->
     <div class="container mt-4">
         <a href="{% url 'addproduct' %}">Add new Product</a>
