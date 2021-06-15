@@ -8,10 +8,13 @@
         <table class="table table-striped">
         <thead>
             <tr>
-            <th>Firstname</th>
+            <th>Name</th>
             <th>Product</th>
             <th>Brand</th>
-            <th>Added Sugar</th>
+            <th style="width:12vw;">Sugar <small class="text-muted">(per 100g)</small></th>
+            <th style="width:12vw;">Added sugar</th>
+            <th>Quantity<small class="text-muted">(g)</small></th>
+            <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +24,13 @@
                     <td>{{ product.productName }}</td>
                     <td>{{ product.productBrand }}</td>
                     <td>{{ product.productSugar }}g</td>
+                    <td>
+                        {% if product.productAddedSugar == True %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td><input type="number" name="product-quantity" id="productQuantity" class="form-control" style="width:7vw;"></td>
+                    <td><button class="btn btn-sm btn-primary">Add</button></td>
                 </tr>
             {% endfor %}
             
@@ -28,18 +38,4 @@
         </table>
     </div>
 
-<!--
-    <ul class="list-group list-group-flush">
-        {% for product in products %}
-        <li class="list-group-item">
-            <div class="d-flex">
-                <img class="mr-4" src="{{ product.productImage.url }}" width="70">
-                <p class="mr-4">{{ product.productName }}</p>
-                <p class="mr-4">Brand: {{ product.productBrand }}</p>
-                <p class="mr-4">Sugar: {{ product.productSugar }}g</p>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
--->
 {% endblock %}

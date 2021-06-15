@@ -11,10 +11,12 @@ class User(AbstractUser):
 
 
 class Product(models.Model):
-    productName = models.CharField(max_length=250)
-    productBrand = models.CharField(max_length=250)
-    productSugar = models.PositiveSmallIntegerField()
-    productImage = models.ImageField(upload_to='img') # check document. on FileField
+    productName = models.CharField(max_length=250, verbose_name='Name')
+    productBrand = models.CharField(max_length=250, verbose_name='Brand')
+    productSize = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Size(g)', default=0)
+    productSugar = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Sugar(per 100g)')
+    productAddedSugar = models.BooleanField(verbose_name='Product has added sugar', default=False)
+    productImage = models.ImageField(upload_to='img', verbose_name='Image') # check document. on FileField
     dateAdded = models.DateTimeField(auto_now_add=True)
 
     def serialize(self): 
@@ -22,7 +24,9 @@ class Product(models.Model):
             'id': self.id,
             'productName': self.productName,
             'productBrand': self.productBrand,
+            'productSize': self.productSize,
             'productSugar': self.productSugar,
+            'productAddedSugar': self.productAddedSugar,
             'productImage': self.productImage,
             'dateAdded': self.dateAdded.strftime('%B %d, %Y, %I:%M %p'),
         }
